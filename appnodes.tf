@@ -1,0 +1,42 @@
+##########################################################################################
+### This config file will spin up 2 nodes - one in each of Subnet-b (named Blue-Box)   ###
+## and Subnet-c (named Red-Box) and 1 Nginx node in Subnet-d (named Prox Server) within ##
+## our network (for high availability). Both will be provisioned using an AMI           ##
+### provisioned by Packer. The nodes will be controlled by the same Security Group.    ###
+########################################################################################## 
+
+provider "aws" {
+  profile = "default"
+  region  = var.region
+}
+
+resource "aws_instance" "app-nodes" {
+  ami                    = data.aws_ami.packer_image.id
+  instance_type          = var.instance_type
+  key_name               = var.key_name
+  subnet_id              = element(local.subs, count.index + 1)
+  vpc_security_group_ids = local.secgrp  
+  count                  = var.instance_count
+  user_data              = file(element(var.user_data, count.index + 1))
+  
+  tags = {
+    Name = element(var.instance_tag, count.index + 1)
+  }
+}
+data "aws_ami" "packer_image" {
+  most_recent = true
+
+   filter {
+    name = "name"
+    values = ["appnodes-packed-ami"]
+    }
+    filter {
+     name = "virtualization-type"
+     values = ["hvm"]
+    }
+
+    owners = ["133267663626"]  // ["issue the command aws sts get-caller-identity to get this info"]
+ }
+output "ip_address" {
+  value = "${aws_instance.app-nodes.*.public_ip}"
+}
