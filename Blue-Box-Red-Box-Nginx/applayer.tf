@@ -5,11 +5,6 @@
 ### provisioned by Packer. The nodes will be controlled by the same Security Group.    ###
 ########################################################################################## 
 
-provider "aws" {
-  profile = "default"
-  region  = var.region
-}
-
 resource "aws_instance" "app-nodes" {
   ami                    = data.aws_ami.packer_image.id
   instance_type          = var.instance_type

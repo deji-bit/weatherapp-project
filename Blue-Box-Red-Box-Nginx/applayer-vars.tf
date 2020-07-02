@@ -27,7 +27,7 @@ variable "instance_count" {
 # User Data
 variable "user_data" {
   type    = list
-  default = ["installmaventomcat.tpl", "installmaventomcat.tpl", "installnginx.tpl"]
+  default = ["", "", "installnginx.tpl"]
 }
 
 # Instance Tags
@@ -35,15 +35,3 @@ variable "instance_tag" {
   type    = list
   default = ["Blue-Box", "Red-Box", "Proxy Server"]
 }
-
-#  VPC-Subnet for app nodes ONLY
-#variable "subnet_id" {
-#   type = list
-#  default = ["aws_subnet.thirdsubnetb.id", "aws_subnet.thirdsubnetc.id"]     
-#}
-
-# Security Groups for app nodes and nginx node ONLY
-#variable "vpc_security_group_ids" {
-#    type = string
-#  default = "aws_security_group.apps-nodes-sg.id"
-#}
