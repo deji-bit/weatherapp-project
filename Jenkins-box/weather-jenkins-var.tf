@@ -1,6 +1,6 @@
 ########################################################
 ###   Variables defined in the configuration files   ### 
-##    use to create the Jenkins node.                ###
+###   used to create the Jenkins node.               ###
 ######################################################## 
 
 #  AWS Region 
@@ -25,9 +25,4 @@ variable "instance_tag_jnks" {
   default = "weather-jenkins"
 }
 
-# Instance Tags
-#variable "instance_tag_app" {
-# type    = string
-# default = "Blue-Box"
-#}
 

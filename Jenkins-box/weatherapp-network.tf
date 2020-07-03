@@ -20,7 +20,7 @@ resource "aws_internet_gateway" "thirdigw" {
   }
 }
 
-### Create our Route Table ###
+### Create a Route Table to be used by our Internet Gateway ###
 
 resource "aws_route_table" "thirdrtb" {
   vpc_id = aws_vpc.thirdvpc.id
@@ -36,7 +36,7 @@ resource "aws_route_table" "thirdrtb" {
 }
 
 
-### Create our Subnets ###
+### Create the Subnets to launch our instances in ###
 
 resource "aws_subnet" "thirdsubneta" {
   vpc_id = aws_vpc.thirdvpc.id
@@ -45,7 +45,7 @@ resource "aws_subnet" "thirdsubneta" {
   map_public_ip_on_launch = "true"
 
   tags = {
-    Name = "weatherapp-subnet-a"
+    Name = "weather-jenkins-subnet-a"
   }
 }
 
@@ -77,11 +77,11 @@ resource "aws_subnet" "thirdsubnetd" {
   map_public_ip_on_launch = "true"
 
   tags = {
-    Name = "weatherapp-subnet-d"
+    Name = "nginx-proxy-subnet-d"
   }
 }
 
-### Associate our Route Table to our 2 Public Subnets ###
+### Associate our Route Table to our 2 Public Subnets for Jenkins and Nginx Proxy ###
 
 resource "aws_route_table_association" "thirdrtbassa" {
   subnet_id      = aws_subnet.thirdsubneta.id

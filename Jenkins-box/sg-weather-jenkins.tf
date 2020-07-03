@@ -30,7 +30,7 @@ resource "aws_security_group" "jenkins-node-sg" {
     to_port           = 8080
     protocol          = "tcp"
     cidr_blocks       = ["31.50.210.201/32"]   // Port 8080 locked down to My local network
-    description       = "connection for jenkins server webui from my IP ONLY"
+    description       = "connection for jenkins server WebUI from my IP ONLY"
   }
 
 ################################################
@@ -41,7 +41,7 @@ resource "aws_security_group" "jenkins-node-sg" {
     to_port           = 22
     protocol          = "tcp"
     cidr_blocks       = ["0.0.0.0/0"]
-    description       = "allow jenkins servers to ssh to other machines"
+    description       = "allow jenkins box to ssh to other machines"
   }
   egress {
     from_port   = 0
