@@ -1,6 +1,6 @@
 #########################################################
 ### List of variables used in the configuration files ### 
-### for the 2 app nodes and 1 Nginx Proxy Server      ###
+### for the 2 app nodes and the Nginx Proxy Server    ###
 #########################################################
 
 #  AWS Private Key Credential 

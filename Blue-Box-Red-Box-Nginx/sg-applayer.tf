@@ -1,6 +1,6 @@
-############################################################################
-###   Security Group to be attached when provisioning the 2 App Nodes   ###
-############################################################################
+###########################################################################
+###   Security Group to be attached to our 2 App Nodes and Nginx Node   ###
+###########################################################################
 
 resource "aws_security_group" "app-nodes-sg" {
   name        = "app-server-sg"

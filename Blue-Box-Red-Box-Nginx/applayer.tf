@@ -1,9 +1,9 @@
-##########################################################################################
-### This config file will spin up 2 nodes - one in each of Subnet-b (named Blue-Box)   ###
-## and Subnet-c (named Red-Box) and 1 Nginx node in Subnet-d (named Prox Server) within ##
-## our network (for high availability). Both will be provisioned using an AMI           ##
-### provisioned by Packer. The nodes will be controlled by the same Security Group.    ###
-########################################################################################## 
+#######################################################################################
+### This config file will spin up 2 nodes - one in Subnet-b (named Blue-Box), one   ###
+##  in Subnet-c (named Red-Box) and 1 Nginx node in Subnet-d (named Prox Server)     ##
+##  for high availability. All will be provisioned using an AMI provisioned        ##
+### by Packer. The nodes will be controlled by the same Security Group.             ###
+####################################################################################### 
 
 resource "aws_instance" "app-nodes" {
   ami                    = data.aws_ami.packer_image.id
