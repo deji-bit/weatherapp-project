@@ -1,3 +1,4 @@
+/*
 terraform {
   backend "s3" {
     bucket_name = "weatherappdemo-terraform"
@@ -5,3 +6,4 @@ terraform {
     region      = "eu-west-2"
   }
 }
+*/
