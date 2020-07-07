@@ -1,7 +1,7 @@
 ###################################################################################
 ###   Spin up the Jenkins instance inside Subnet-a using the AMI provisioned    ###
 ##    with Packer baked with Git, Terraform, Packer, Maven and Ansible and       ##
-###   attach the Jenkins Security Group. Name this node "weather-jenkins".      ###                                  ### 
+###   attach the Jenkins Security Group. Name this node "weather-jenkins".      ###
 ###################################################################################
 
 # create an AWS EC2 instance to be used for Jenkins box using a Packer image
@@ -11,6 +11,7 @@ resource "aws_instance" "jenkins-node" {
   key_name               = var.key_name
   subnet_id              =  aws_subnet.thirdsubneta.id
   vpc_security_group_ids = ["${aws_security_group.jenkins-node-sg.id}"]
+  count                  = var.instance_count_jnks
   
   tags = {
     Name = var.instance_tag_jnks

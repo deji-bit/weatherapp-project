@@ -36,7 +36,7 @@ resource "aws_route_table" "thirdrtb" {
 }
 
 
-### Create the Subnets to launch our instances in ###
+### Create the Subnets to launch our Jenkins node in ###
 
 resource "aws_subnet" "thirdsubneta" {
   vpc_id = aws_vpc.thirdvpc.id
@@ -49,46 +49,10 @@ resource "aws_subnet" "thirdsubneta" {
   }
 }
 
-resource "aws_subnet" "thirdsubnetb" {
-  vpc_id = aws_vpc.thirdvpc.id
-  cidr_block = "10.0.0.64/26"
-  availability_zone = "eu-west-2b"
-  map_public_ip_on_launch = "true"
 
-  tags = {
-    Name = "weatherapp-subnet-b"
-  }
-}
-
-resource "aws_subnet" "thirdsubnetc" {
-  vpc_id = aws_vpc.thirdvpc.id
-  cidr_block = "10.0.0.128/26"
-  availability_zone = "eu-west-2c"
-  map_public_ip_on_launch = "true"
-
-  tags = {
-    Name = "weatherapp-subnet-c"
-  }
-}
-resource "aws_subnet" "thirdsubnetd" {
-  vpc_id = aws_vpc.thirdvpc.id
-  cidr_block = "10.0.0.192/26"
-  availability_zone = "eu-west-2a"
-  map_public_ip_on_launch = "true"
-
-  tags = {
-    Name = "nginx-proxy-subnet-d"
-  }
-}
-
-### Associate our Route Table to our 2 Public Subnets for Jenkins and Nginx Proxy ###
+### Associate our Route Table to the Public Subnet for our Jenkins node ###
 
 resource "aws_route_table_association" "thirdrtbassa" {
   subnet_id      = aws_subnet.thirdsubneta.id
-  route_table_id = aws_route_table.thirdrtb.id
-}
-
-resource "aws_route_table_association" "thirdrtbassd" {
-  subnet_id      = aws_subnet.thirdsubnetd.id
   route_table_id = aws_route_table.thirdrtb.id
 }

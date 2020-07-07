@@ -15,8 +15,13 @@ variable "key_name" {
 
 # Instance Type
 variable "instance_type" {
-  type = string
+  type    = string
   default = "t2.micro"
+}
+
+# Number of nodes
+variable "instance_count_jnks" {
+  default = "1"
 }
 
 # Instance Tags
