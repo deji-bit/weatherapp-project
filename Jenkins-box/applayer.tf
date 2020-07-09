@@ -10,7 +10,7 @@ resource "aws_instance" "app-nodes" {
   instance_type          = var.instance_type
   key_name               = var.key_name
   subnet_id              = element(local.subs, count.index + 1)
-  vpc_security_group_ids = local.secgrp  
+  vpc_security_group_ids = element(local.secgrp, count.index + 1)  
   count                  = var.instance_count
   user_data              = file(element(var.user_data, count.index + 1))
   
