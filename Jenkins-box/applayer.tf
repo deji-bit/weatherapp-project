@@ -6,7 +6,7 @@
 ############################################################################################# 
 
 resource "aws_instance" "app-nodes" {
-  ami                    = data.aws_ami.packer_image.id
+  ami                    = data.aws_ami.rpacker_image.id
   instance_type          = var.instance_type
   key_name               = var.key_name
   subnet_id              = element(local.subs, count.index + 1)
@@ -18,7 +18,7 @@ resource "aws_instance" "app-nodes" {
     Name = element(var.instance_tag, count.index + 1)
   }
 }
-data "aws_ami" "packer_image" {
+data "aws_ami" "rpacker_image" {
   most_recent = true
 
    filter {
