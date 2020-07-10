@@ -17,8 +17,8 @@ resource "aws_security_group" "app-nodes-sg" {
 # proxy and ssh
 # resource "aws_security_group_rule" "app_nodes_from_source_ingress_tcp" {
   ingress {
-    from_port         = 80
-    to_port           = 80
+    from_port         = 8080
+    to_port           = 8080
     protocol          = "tcp"
     cidr_blocks       = ["10.0.0.0/24"]
     description       = "web connection to proxy_server from all traffic"
