@@ -8,6 +8,12 @@ variable "instance_count" {
   default = "3"
 }
 
+# Security Groups
+variable "security_groups" {
+  type    = list
+  default = ["aws_security_group.app-nodes-sg.id", "aws_security_group.app-nodes-sg.id", "aws_security_group.proxy-node-sg.id"]
+}
+
 # User Data
 variable "user_data" {
   type    = list
